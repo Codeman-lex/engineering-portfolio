@@ -9,7 +9,7 @@ function index(){
   ${projects.map(p=>`<article class="feature"><div class="feature-copy"><span class="field">${p.field}</span><h3><a href="${route(p)}">${p.name}</a></h3><p>${p.summary}</p><div class="tags">${tags(p)}</div><a class="primary" href="${route(p)}">Explore case study <b>↗</b></a></div><a class="plate" href="${route(p)}" aria-label="Open ${p.name} case study">${projectCover(p.slug)}</a></article>`).join("")}
   <section class="chapter"><h2>Engineering approach</h2>${entries([["Design","Start with the decision someone needs to make. Define the inputs, the evidence and the boundaries of automation."],["Build","Connect the data, decision logic and interface so a visitor can follow a single example from input to outcome."],["Validate","Check edge cases, reproduce results and document where the method breaks down."]])}</section>
   <section id="about" class="chapter"><h2>About</h2><p>My background spans business analysis, financial technology, compliance and data analytics. I use AI-assisted development to explore where software can help people investigate a signal, check an answer or review a decision.</p></section>
-  <section id="contact" class="chapter"><h2>Contact</h2><p><a href="https://github.com/Codeman-lex">Find me on GitHub ↗</a></p></section>`;
+  <section id="contact" class="chapter"><h2>Contact</h2><p><a href="https://github.com/Codeman-lex/engineering-portfolio/tree/main/dist">View the source on GitHub ↗</a></p></section>`;
 }
 function entries(items){
   return items.map(([label,body])=>`<div class="entry"><h3>${label}</h3><p>${body}</p></div>`).join("");
