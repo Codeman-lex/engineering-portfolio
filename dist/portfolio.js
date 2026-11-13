@@ -16,7 +16,7 @@ function index(){
     veritas: ["Answer grading", "The invoice says $130. The answer says $140. How much credit does it deserve?", "Grade the answer", "overview"],
     aegis: ["Case review", "The applicant says Unit 4. The document says Unit 0. Would you approve the case?", "Review the evidence", "overview"]
   };
-  main.innerHTML=`<section class="studio-opening"><div class="studio-sign">Vincent Chinemerem</div><h1>I build intelligent systems that turn complex problems into practical software.</h1></section>
+  main.innerHTML=`<section class="studio-opening"><div class="studio-sign">Vincent Chinemerem</div><h1>Engineering<br><em>portfolio.</em></h1><p>I build intelligent systems that turn complex problems into practical software.</p></section>
   <section class="shelf" aria-label="Interactive projects">${projects.map(p=>{
     const invitation=invitations[p.slug];
     return `<article><a class="cover-link" href="${route(p)}" aria-label="Explore ${p.name}">${projectCover(p.slug)}</a><div class="shelf-copy"><span>${p.field}</span><h2>${invitation?.[1] || p.name}</h2>${projectLinks(p)}<a href="${route(p,invitation?.[3])}">${invitation?.[2] || "Explore project"} ↗</a></div></article>`;

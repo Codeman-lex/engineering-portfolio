@@ -21,4 +21,4 @@ header{border-bottom:1px solid var(--line)}.mast,nav,.wordmark,footer{display:fl
 @media(max-width:850px){.shelf{grid-template-columns:1fr}.shelf article{display:grid;grid-template-columns:1fr 1fr}.studio-opening{grid-template-columns:1.4fr 1fr}}
 @media(max-width:580px){.studio-opening,.shelf article{display:block}.studio-sign{margin-bottom:18px}.studio-opening p{margin-top:22px}.shelf{gap:24px}.shelf-copy{padding:18px}}
 
-.studio-opening h1{grid-column:1/-1;font:650 clamp(40px,6vw,88px)/1.02 Georgia,serif;letter-spacing:-.055em;max-width:22ch}.project-links{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:0 0 20px}.project-links a:first-child{background:#222820;color:white;padding:10px 14px;border-radius:3px;text-decoration:none}.project-links a{font:600 14px system-ui}
+.project-links{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:0 0 20px}.project-links a:first-child{background:#222820;color:white;padding:10px 14px;border-radius:3px;text-decoration:none}.project-links a{font:600 14px system-ui}
