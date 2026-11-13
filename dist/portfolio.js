@@ -3,9 +3,7 @@ const chapters = {overview:"Walkthrough",build:"Engineering",results:"Results",r
 function route(p, section="overview"){return "#project/"+p.slug+"/"+section}
 function tags(p){return p.tools.map(t=>'<span>'+t+'</span>').join("")}
 function projectLinks(p) {
-  const ports = {"sentinel-ai":8541,veritas:8543,aegis:8544};
-  const local = ["localhost","127.0.0.1"].includes(location.hostname);
-  const app = local ? "http://"+location.hostname+":"+ports[p.slug]+"/" : "https://mybinder.org/v2/gh/Codeman-lex/engineering-portfolio/main?urlpath="+p.slug+"/";
+  const app = "https://codeman-lex.github.io/engineering-portfolio/"+p.slug+"/";
   const code = "https://github.com/Codeman-lex/engineering-portfolio/tree/main/projects/"+p.slug;
   return `<div class="project-links"><a href="${app}" target="_blank" rel="noopener">View project ↗</a><a href="${code}" target="_blank" rel="noopener">View code ↗</a></div>`;
 }
