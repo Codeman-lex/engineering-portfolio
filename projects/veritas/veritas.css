@@ -1,0 +1,12 @@
+.stApp{background:#f8f6ff;color:#201537}.block-container{max-width:1280px;padding:2.7rem clamp(1.1rem,4vw,4rem) 4rem}
+[data-testid=stHeader]{background:transparent;height:2.5rem}
+.v-mast{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:15px 0 12px;border-bottom:3px solid #34215d;color:#30204c}
+.v-word{font:italic 600 clamp(40px,6vw,78px)/.95 Georgia,serif;letter-spacing:-.09em}.v-word b{font-style:normal;color:#fc603e}.v-mast small,.v-source small,.v-annotation,.v-metrics{font:12px/1.5 ui-monospace,monospace}
+.stApp h1{font:650 clamp(28px,3vw,45px)/1.1 system-ui;letter-spacing:-.055em;color:#28183e}
+.v-source{display:grid;grid-template-columns:1.2fr 1fr;border:1px solid #bfb2d7;border-left:5px solid #8c60c0;background:white;margin:6px 0}
+.v-source>div{padding:16px 20px}.v-source>div+div{background:#eae4f6}.v-source h2{font:500 clamp(20px,2vw,30px)/1.2 Georgia,serif;margin:6px 0}.v-source code{color:#37265b;white-space:pre-wrap;overflow-wrap:anywhere}
+.v-candidate{display:flex;align-items:center;gap:12px;font:600 19px system-ui;color:#31234e;border-bottom:1px solid #d7cfe6;padding-bottom:12px}.v-candidate b{font:italic 32px Georgia,serif;color:#8056a6}
+.v-grade{display:flex;align-items:center;justify-content:space-between;border-top:2px solid #31234e;padding:14px 0 5px}.v-grade strong{font:500 34px/1 Georgia,serif}.v-grade small{font:12px ui-monospace,monospace}.v-check{display:flex;gap:10px;padding:6px 0;color:#363044;font:14px system-ui}.v-check b{color:#4a7250}.v-check.fail b{color:#b74428}.v-check.fail{background:#fff0e8}
+[data-testid=stTextArea] textarea{font-family:ui-monospace,monospace;background:#f9f7fc}
+@media(max-width:650px){.v-source{grid-template-columns:1fr}.v-mast small{max-width:15ch}}
+.v-edit{background:#f2eaf9;border-left:3px solid #8153a7;padding:10px 16px;font:italic 28px Georgia,serif}.v-edit small{display:block;font:11px/1.5 ui-monospace,monospace;color:#59466b}.v-edit del{color:#94534e;text-decoration-thickness:2px}.v-edit ins{color:#653b8c;text-decoration-style:wavy;text-decoration-thickness:1px;text-underline-offset:3px}

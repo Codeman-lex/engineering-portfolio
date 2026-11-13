@@ -2,14 +2,28 @@ const main = document.querySelector("main");
 const chapters = {overview:"Walkthrough",build:"Engineering",results:"Results",replicate:"Reproduce",next:"Next iteration"};
 function route(p, section="overview"){return "#project/"+p.slug+"/"+section}
 function tags(p){return p.tools.map(t=>'<span>'+t+'</span>').join("")}
+function projectLinks(p) {
+  const ports = {"sentinel-ai":8541,veritas:8543,aegis:8544};
+  const local = ["localhost","127.0.0.1"].includes(location.hostname);
+  const app = local ? "http://"+location.hostname+":"+ports[p.slug]+"/" : "https://mybinder.org/v2/gh/Codeman-lex/engineering-portfolio/main?urlpath="+p.slug+"/";
+  const code = "https://github.com/Codeman-lex/engineering-portfolio/tree/main/projects/"+p.slug;
+  return `<div class="project-links"><a href="${app}" target="_blank" rel="noopener">View project ↗</a><a href="${code}" target="_blank" rel="noopener">View code ↗</a></div>`;
+}
 function index(){
-  document.title="Engineering portfolio · Codeman-lex";
-  main.innerHTML=`<div class="intro"><h1>Engineering<br><em>portfolio.</em></h1><p>Projects in applied AI, financial technology and data engineering. Inspect a flagged payment, grade a response against evidence, or follow an onboarding decision back to its source.</p></div>
-  <div class="sectionline"><h2>Selected projects</h2><span>${projects.length} ${projects.length===1?"case study":"case studies"}</span></div>
-  ${projects.map(p=>`<article class="feature"><div class="feature-copy"><span class="field">${p.field}</span><h3><a href="${route(p)}">${p.name}</a></h3><p>${p.summary}</p><div class="tags">${tags(p)}</div><a class="primary" href="${route(p)}">Explore case study <b>↗</b></a></div><a class="plate" href="${route(p)}" aria-label="Open ${p.name} case study">${projectCover(p.slug)}</a></article>`).join("")}
-  <section class="chapter"><h2>Engineering approach</h2>${entries([["Design","Start with the decision someone needs to make. Define the inputs, the evidence and the boundaries of automation."],["Build","Connect the data, decision logic and interface so a visitor can follow a single example from input to outcome."],["Validate","Check edge cases, reproduce results and document where the method breaks down."]])}</section>
+  document.title="Engineering portfolio · Vincent Chinemerem";
+  const invitations = {
+    "sentinel-ai": ["Fraud signals", "How many false alerts would you accept to catch one more suspicious payment?", "Compare detection methods", "results"],
+    veritas: ["Answer grading", "The invoice says $130. The answer says $140. How much credit does it deserve?", "Grade the answer", "overview"],
+    aegis: ["Case review", "The applicant says Unit 4. The document says Unit 0. Would you approve the case?", "Review the evidence", "overview"]
+  };
+  main.innerHTML=`<section class="studio-opening"><div class="studio-sign">Vincent Chinemerem</div><h1>I build intelligent systems that turn complex problems into practical software.</h1></section>
+  <section class="shelf" aria-label="Interactive projects">${projects.map(p=>{
+    const invitation=invitations[p.slug];
+    return `<article><a class="cover-link" href="${route(p)}" aria-label="Explore ${p.name}">${projectCover(p.slug)}</a><div class="shelf-copy"><span>${p.field}</span><h2>${invitation?.[1] || p.name}</h2>${projectLinks(p)}<a href="${route(p,invitation?.[3])}">${invitation?.[2] || "Explore project"} ↗</a></div></article>`;
+  }).join("")}</section>
   <section id="about" class="chapter"><h2>About</h2><p>My background spans business analysis, financial technology, compliance and data analytics. I use AI-assisted development to explore where software can help people investigate a signal, check an answer or review a decision.</p></section>
   <section id="contact" class="chapter"><h2>Contact</h2><p><a href="https://github.com/Codeman-lex/engineering-portfolio/tree/main/dist">View the source on GitHub ↗</a></p></section>`;
+
 }
 function entries(items){
   return items.map(([label,body])=>`<div class="entry"><h3>${label}</h3><p>${body}</p></div>`).join("");
@@ -31,9 +45,9 @@ function showResult(p,i){
   main.querySelectorAll("[data-method]").forEach((b,j)=>b.setAttribute("aria-pressed",j===i));
 }
 function caseStudy(p,chapter){
-  document.title=p.name+" · "+chapters[chapter]+" · Codeman-lex";
+  document.title=p.name+" · "+chapters[chapter]+" · Codeman Lex";
   main.innerHTML=`<a class="back" href="#work">← Project index</a><div class="case-head"><div><span class="field">${p.field}</span><h1>${p.name}</h1></div><p>${p.summary}</p></div>
-  <nav class="chapters" aria-label="Case study sections">${Object.entries(chapters).map(([key,name])=>`<a href="${route(p,key)}" ${key===chapter?'aria-current="page"':''}>${name}</a>`).join("")}</nav><section class="chapter"></section>`;
+  ${projectLinks(p)}<nav class="chapters" aria-label="Case study sections">${Object.entries(chapters).map(([key,name])=>`<a href="${route(p,key)}" ${key===chapter?'aria-current="page"':''}>${name}</a>`).join("")}</nav><section class="chapter"></section>`;
   const panel=main.querySelector(".chapter");
   if(chapter==="overview"){
     panel.innerHTML=`<div class="story"><div><h2>The problem</h2><p>${p.problem}</p></div><div><h2>What I built</h2><p>${p.contribution}</p></div></div>${gallery(p)}`;
