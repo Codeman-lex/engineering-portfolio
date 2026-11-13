@@ -5,6 +5,6 @@ try {
   const response = await fetch("./app.json");
   if (!response.ok) throw Error("Application files could not be loaded.");
   const files = await response.json();
-  await mount({requirements:["sqlite3", "pandas", "scikit-learn", "sqlalchemy", "plotly"],entrypoint:"app.py",files},root);
+  await mount({requirements:["pandas", "scikit-learn", "sqlalchemy", "plotly"],entrypoint:"app.py",files},root);
 } catch (error) {root.textContent = "Could not open Sentinel AI. " + error.message;}
 </script></body></html>
