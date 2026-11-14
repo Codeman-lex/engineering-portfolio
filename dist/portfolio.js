@@ -17,7 +17,7 @@ function index(){
   main.innerHTML=`<section class="studio-opening"><div class="studio-sign">Vincent Chinemerem</div><h1>Engineering<br><em>portfolio.</em></h1><p>I build intelligent systems that turn complex problems into practical software.</p></section>
   <section class="shelf" aria-label="Interactive projects">${projects.map(p=>{
     const invitation=invitations[p.slug];
-    return `<article><a class="cover-link" href="https://codeman-lex.github.io/engineering-portfolio/${p.slug}/" aria-label="Explore ${p.name}">${projectCover(p.slug)}</a><div class="shelf-copy"><span>${p.field}</span><h2>${invitation?.[1] || p.name}</h2>${projectLinks(p)}<a href="${route(p,invitation?.[3])}">${invitation?.[2] || "Explore project"} ↗</a></div></article>`;
+    return `<article><a class="cover-link" href="${route(p)}" aria-label="Explore ${p.name}">${projectCover(p.slug)}</a><div class="shelf-copy"><span>${p.field}</span><h2>${invitation?.[1] || p.name}</h2>${projectLinks(p)}<a href="${route(p)}">Read case study ↗</a></div></article>`;
   }).join("")}</section>
   <section id="about" class="chapter"><h2>About</h2><p>My background spans business analysis, financial technology, compliance and data analytics. I use AI-assisted development to explore where software can help people investigate a signal, check an answer or review a decision.</p></section>
   <section id="contact" class="chapter"><h2>Contact</h2><p><a href="https://github.com/Codeman-lex/engineering-portfolio/tree/main/dist">View the source on GitHub ↗</a></p></section>`;
