@@ -1,10 +1,1 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sentinel AI · Codeman Lex</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.2/build/stlite.css"></head><body><div id="root"><p>Opening Sentinel AI…</p></div><script type="module">
-const root = document.getElementById("root");
-try {
-  const {mount} = await import("https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.2/build/stlite.js");
-  const response = await fetch("./app.json");
-  if (!response.ok) throw Error("Application files could not be loaded.");
-  const files = await response.json();
-  await mount({requirements:["pandas", "scikit-learn", "sqlalchemy", "plotly"],entrypoint:"app.py",files},root);
-} catch (error) {root.textContent = "Could not open Sentinel AI. " + error.message;}
-</script></body></html>
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Sentinel AI</title><meta http-equiv="refresh" content="0;url=./"><a href="./">Open Sentinel AI</a></html>
