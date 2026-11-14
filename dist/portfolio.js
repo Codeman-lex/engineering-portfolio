@@ -26,17 +26,6 @@ function index(){
 function entries(items){
   return items.map(([label,body])=>`<div class="entry"><h3>${label}</h3><p>${body}</p></div>`).join("");
 }
-function gallery(p){
-  return `<div class="switcher" aria-label="Application screens">${p.pictures.map((pic,i)=>`<button data-picture="${i}" aria-pressed="${i===0}">${pic.name}</button>`).join("")}</div>
-  <figure><a id="full-image" target="_blank" rel="noopener"><img id="capture" alt=""></a><figcaption id="caption"></figcaption></figure>`;
-}
-function showPicture(p,i){
-  const pic=p.pictures[i], img=main.querySelector("#capture");
-  img.src=pic.src;img.alt=p.name+" – "+pic.name;
-  main.querySelector("#full-image").href=pic.src;
-  main.querySelector("#caption").textContent=pic.caption;
-  main.querySelectorAll("[data-picture]").forEach((b,j)=>b.setAttribute("aria-pressed",j===i));
-}
 function showResult(p,i){
   const ev=p.evaluation,m=ev.methods[i];
   main.querySelector("#comparison").innerHTML=`<p>${m.cutoff}</p><div class="result-stats"><div><strong>${m.tp}</strong>positives detected</div><div><strong>${ev.positives-m.tp}</strong>positives missed</div><div><strong>${m.fp}</strong>false alerts</div></div><p>${(100*m.tp/(m.tp+m.fp)).toFixed(1)}% precision · ${(100*m.tp/ev.positives).toFixed(1)}% recall</p>`;
@@ -48,10 +37,13 @@ function caseStudy(p,chapter){
   ${projectLinks(p)}<nav class="chapters" aria-label="Case study sections">${Object.entries(chapters).map(([key,name])=>`<a href="${route(p,key)}" ${key===chapter?'aria-current="page"':''}>${name}</a>`).join("")}</nav><section class="chapter"></section>`;
   const panel=main.querySelector(".chapter");
   if(chapter==="overview"){
-    panel.innerHTML=`<div class="story"><div><h2>The problem</h2><p>${p.problem}</p></div><div><h2>What I built</h2><p>${p.contribution}</p></div></div>${gallery(p)}`;
-    showPicture(p,0);
-    showExercise(panel,p.slug);
-    panel.querySelectorAll("[data-picture]").forEach((btn,i)=>btn.onclick=()=>showPicture(p,i));
+    const walkthroughs = {
+      "sentinel-ai": ["Investigate a flagged payment", "Raise the minimum risk score to 60. Open a payment and compare its amount with that customer’s previous average."],
+      veritas: ["Find the invoice error", "Case 2-002 has two answers in the correct format. Compare their totals with the invoice, then inspect the grading criteria to see why one loses a point."],
+      aegis: ["Review an onboarding decision", "Open Fenn Works 040. Check the address and identity exceptions, enter the evidence you need, then request more information."]
+    };
+    const [task, instructions] = walkthroughs[p.slug];
+    panel.innerHTML=`<div class="story"><div><h2>The problem</h2><p>${p.problem}</p></div><div><h2>What I built</h2><p>${p.contribution}</p></div></div><h2>${task}</h2><p>${instructions}</p><iframe title="${p.name} interactive workspace" src="https://codeman-lex.github.io/engineering-portfolio/${p.slug}/?embed=1" style="display:block;width:100%;height:min(78vh,820px);min-height:450px;border:1px solid #c7c8bc;border-radius:6px"></iframe>`;
   }else if(chapter==="build"){
     panel.innerHTML=`<h2>How the system works</h2><ol class="flow">${(p.flow||["Seeded ledger","Prior activity","Detection engines","Investigation"]).map(step=>"<li>"+step+"</li>").join("")}</ol><div class="tags">${tags(p)}</div>${entries(p.decisions)}<p class="note">${p.credit}</p>`;
   }else if(chapter==="results"){
